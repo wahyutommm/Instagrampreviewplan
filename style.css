@@ -1,0 +1,421 @@
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 60px; /* Space for the footer */
+            min-height: 100vh;
+            position: relative;
+        }
+        .instagram-post {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .instagram-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-pic {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            border: 3px solid #e1306c;
+            padding: 3px;
+            background-color: white;
+        }
+        .story-highlight {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 1px solid #dbdbdb;
+            padding: 3px;
+            background-color: white;
+        }
+        .month-selector {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .month-dropdown {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .month-option {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .month-option:hover {
+            background-color: #f3f3f3;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: white;
+            border-top: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+        .footer-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .new-post-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .new-post-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            overflow: hidden;
+        }
+        .instagram-header {
+            border-bottom: 1px solid #dbdbdb;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+        }
+        .instagram-logo {
+            height: 30px;
+        }
+        .tab-indicator {
+            height: 1px;
+            background-color: black;
+            position: absolute;
+            bottom: 0;
+            transition: transform 0.3s;
+        }
+        .empty-feed {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .empty-feed-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+        }
+        
+        /* Post View Modal - Instagram PC Style */
+        .post-view-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .post-view-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .post-view-container {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            max-height: 600px;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .post-view-image-container {
+            flex: 1.2;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .post-view-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .post-view-sidebar {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #dbdbdb;
+        }
+        .post-view-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .post-view-comments {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        .post-view-actions {
+            padding: 12px 16px;
+            border-top: 1px solid #dbdbdb;
+        }
+        .post-view-footer {
+            padding: 16px;
+            border-top: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Modal steps */
+        .modal-step {
+            display: none;
+        }
+        .modal-step.active {
+            display: block;
+        }
+        
+        /* Upload area */
+        .upload-area {
+            height: 320px;
+        }
+        
+        /* Caption preview image */
+        .caption-preview-image {
+            width: 96px;
+            height: 96px;
+        }
+        
+        /* Caption textarea */
+        .caption-input {
+            width: 100%;
+            min-height: 96px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 12px;
+            resize: none;
+            font-size: 14px;
+        }
+        .caption-input:focus {
+            outline: none;
+            border-color: #b2b2b2;
+        }
+        .caption-counter {
+            font-size: 12px;
+            color: #8e8e8e;
+            text-align: right;
+            margin-top: 4px;
+        }
+        
+        /* Three dots menu */
+        .three-dots-menu {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 200px;
+            z-index: 100;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f3f3f3;
+        }
+        
+        .dropdown-item.danger {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        /* Month badge */
+        .month-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        /* Edit Caption Modal */
+        .edit-caption-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .edit-caption-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .edit-caption-container {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            overflow: hidden;
+        }
+        
+        .edit-caption-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        
+        .edit-caption-content {
+            padding: 16px;
+        }
+        
+        .edit-caption-footer {
+            padding: 14px 16px;
+            border-top: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .edit-caption-preview {
+            display: flex;
+            margin-bottom: 16px;
+        }
+        
+        .edit-caption-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 12px;
+        }
+        
+        .edit-caption-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 5000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .notification.active {
+            opacity: 1;
+        }
+    
